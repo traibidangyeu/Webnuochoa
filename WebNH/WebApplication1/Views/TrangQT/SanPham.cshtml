@@ -1,0 +1,125 @@
+﻿<style>
+    a {
+        color: black;
+    }
+
+    table {
+        border: 2px outset grey;
+        padding: 3px
+    }
+
+    td {
+        border: 1px solid;
+        margin: 1px;
+    }
+</style>
+@using WebNuocHoa.Models
+@using PagedList.Mvc;
+@model PagedList.PagedList<SanPham>
+@helper Truncate(string input, int length)
+{
+    if (input == null)
+    {
+        //
+    }
+    else
+    {
+        if (input.Length <= length)
+        {
+            @input
+        }
+        else
+        {
+            @input.Substring(0, length)<test>...</test>
+        }
+    }
+}
+@{
+    ViewBag.Title = "SanPham";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 style="margin: 85px 0px 15px 45px; font-family: -webkit-body; font-size: 50px;">QUẢN LÝ THÔNG TIN NƯỚC HOA</h2>
+
+<p style="text-align: center;margin: 10px 67px 50px 70px;font-size: 25px;border: outset;width: 240px;height: 45px;padding-top: 9px;border-radius: 5px;float: right;background-color: lightpink">
+    @Html.ActionLink("Thêm Sản Phẩm", "ThemmoiSP")
+</p>
+<table class="container-fluid" style="margin-left:10px; margin-top:20px" border="1">
+    <tr style="text-align:center;background-color: blanchedalmond;font-family: auto;font-size: 18px;">
+        <th style="width:200px">Tên Sản Phẩm</th>
+        <th style="width:200px">Giá</th>
+        <th style="width:200px">Mô Tả</th>
+        <th style="width:200px">Hình Ảnh</th>
+        <th style="width:200px">Mùi Hương</th>
+        <th style="width:200px">Đánh Giá</th>
+        <th style="width:200px">Ngày Cập Nhật</th>
+        <th style="width:200px">Tồn Kho </th>
+        <th style="width:200px">Mã Loại</th>
+        <th style="width:200px"></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr style="text-align:center">
+            <td>
+                @Html.DisplayFor(modelItem => item.TenSP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GiaBan)0
+            </td>
+            <td>
+                @Truncate(item.MoTa, 100)
+            </td>
+            <td>
+                <img style="width: 135px;" src="@Url.Content("~/images/" + item.AnhBia)">
+            </td>
+            <td>
+                @Truncate(item.MuiHuong, 100)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DanhGia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayCapNhat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoLuongTon)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaLoai)
+            </td>
+            <td>
+                <p>@Html.ActionLink("Chỉnh Sửa", "Edit", new { id = item.MaSP })</p>
+                <p style="margin-top: 30px;border-bottom: 1px solid;"></p>
+                <p style="margin-top:30px">@Html.ActionLink("Xóa", "Delete", new { id = item.MaSP })</p>
+            </td>
+        </tr>
+    }
+
+</table>
+@*Tao trang lien ket *@
+<p style="font-family: monospace;font-size: 20px;margin-left: 590px; margin-top: 80px">Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount</p>
+<div class="pagination">
+    <p style="margin-left: 545px"> @Html.PagedListPager(Model, page => Url.Action("SanPham", new { page = page }))</p>
+</div>
+<style>
+    /* Set the style for the a tag */
+    .pagination a {
+        color: black;
+        float: left;
+        padding: 12px 18px;
+        text-decoration: none;
+    }
+        /* set the style for the active class */
+        .pagination a.active {
+            background-color: dodgerblue;
+            color: white;
+            /*Circle Design with CSS*/
+            border-radius: 50%;
+        }
+        /* add background color when user hovers on inactive class */
+        .pagination a:hover:not(.active) {
+            background-color: #ddd;
+            border-radius: 50%;
+        }
+</style>

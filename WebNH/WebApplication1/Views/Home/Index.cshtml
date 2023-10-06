@@ -1,0 +1,320 @@
+﻿@using WebNuocHoa.Models
+@{
+    ViewBag.Title = "Index";
+}
+<!-- ***** Main Banner Area Start ***** -->
+<div class="main-banner" id="top">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="left-content">
+                    <div class="thumb">
+                        <div class="inner-content">
+                            <h4>Hexashop</h4>
+                            <span>Trang phục bạn sẽ không bao giờ là hoàn chỉnh nếu không có nước hoa!</span>
+                        </div>
+                        <img src="~/images/left-banner-image.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="right-content">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="right-first-image">
+                                <div class="thumb">
+                                    <div class="inner-content">
+                                        <h4>Nước hoa Nữ</h4>
+                                        <span>Sản phẩm tuyệt vời dành cho nữ</span>
+                                    </div>
+                                    <div class="hover-content">
+                                        <div class="inner">
+                                            <p>Vẻ đẹp của hương thơm biểu hiện trái tim của bạn và hy vọng của người khác</p>
+                                        </div>
+                                    </div>
+                                    <img src="~/images/baner-right-image-01.jpg">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="right-first-image">
+                                <div class="thumb">
+                                    <div class="inner-content">
+                                        <h4>Nước hoa Nam</h4>
+                                        <span>Sản phẩm tuyệt vời dành cho nam</span>
+                                    </div>
+                                    <div class="hover-content">
+                                        <div class="inner">
+                                            <p>Một chút hương thơm hoa hồng bám vào tay sẽ mang đến hoa hồng. Nếu bạn hào phóng, bạn sẽ đạt được mọi thứ.</p>
+                                        </div>
+                                    </div>
+                                    <img src="~/images/baner-right-image-02.jpg">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="right-first-image">
+                                <div class="thumb">
+                                    <div class="inner-content">
+                                        <h4>Nam & Nữ</h4>
+                                        <span>Dành cho Nam và Nữ</span>
+                                    </div>
+                                    <div class="hover-content">
+                                        <div class="inner">
+                                            <p>Cuộc sống không có tình yêu cũng giống như là một bông hoa không có hương thơm.</p>
+                                        </div>
+                                    </div>
+                                    <img src="~/images/baner-right-image-03.jpg">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="right-first-image">
+                                <div class="thumb">
+                                    <div class="inner-content">
+                                        <h4>Mini</h4>
+                                        <span>Tiện Lợi</span>
+                                    </div>
+                                    <div class="hover-content">
+                                        <div class="inner">
+                                            <p>Đừng Để Những Thứ Nhỏ Nhặt Cản Trở Đi Hành Trình Của Bạn!</p>
+                                        </div>
+                                    </div>
+                                    <img src="~/images/baner-right-image-04.jpg">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ***** Main Banner Area End ***** -->
+<!-- ***** Men Area Starts ***** -->
+<section class="section" id="men">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="section-heading">
+                    <h2>Nước hoa dành cho Nam</h2>
+                    <span>Nước hoa như một dấu ngoặc đơn, một khoảnh khắc của tự do, bình yên, tình yêu và gợi cảm giữa những xáo trộn của cuộc sống hiện đại.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="men-item-carousel">
+                    <div class="owl-men-item owl-carousel">
+                        @{
+                            foreach (SanPham i in project.GetSanPhamsByMaLoai(111))
+                            {
+                                <div class="item">
+                                    <a href="@Url.Action("Index", "SingleProduct", new {id = i.MaSP })">
+                                        <div class="thumb">
+                                            <img style="width:66%" src="~/images/@i.AnhBia" alt="">
+                                        </div>
+                                    </a>
+                                    <div class="down-content">
+                                        <h5>@i.TenSP</h5>
+                                        <span>@i.GiaBan.000 VNĐ</span>
+
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ***** Men Area Ends ***** -->
+<!-- ***** Women Area Starts ***** -->
+<section class="section" id="women">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="section-heading">
+                    <h2>Nước hoa dành cho Nữ</h2>
+                    <span>Nước hoa là dấu ấn của bản sắc phụ nữ và là điểm nhấn cuối cùng trong phong cách của cô ấy.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="women-item-carousel">
+                    <div class="owl-women-item owl-carousel">
+                        @{
+                            foreach (SanPham i in project.GetSanPhamsByMaLoai(222))
+                            {
+                                <div class="item">
+                                    <a href="@Url.Action("Index", "SingleProduct", new {id = i.MaSP })">
+                                        <div class="thumb">
+                                            <img style="width:66%" src="~/images/@i.AnhBia" alt="">
+                                        </div>
+                                    </a>
+                                    <div class="down-content">
+                                        <h5>@i.TenSP</h5>
+                                        <span>@i.GiaBan.000 VNĐ</span>
+
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ***** Women Area Ends ***** -->
+<!-- ***** Kids Area Starts ***** -->
+<section class="section" id="kids">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="section-heading">
+                    <h2>Nước hoa dành cho Nam & Nữ</h2>
+                    <span>Nước hoa hoàn thiện sự sang trọng - một chi tiết nhấn mạnh vẻ ngoài một cách tinh tế, một phần bổ sung vô hình hoàn thiện tính cách đàn ông và phụ nữ. Không có nó thì thiếu cái gì đó</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="kid-item-carousel">
+                    <div class="owl-kid-item owl-carousel">
+                        @{
+                            foreach (SanPham i in project.GetSanPhamsByMaLoai(444))
+                            {
+                                <div class="item">
+                                    <a href="@Url.Action("Index", "SingleProduct", new {id = i.MaSP })">
+                                        <div class="thumb">
+                                            <img style="width:66%" src="~/images/@i.AnhBia" alt="">
+                                        </div>
+                                    </a>
+                                    <div class="down-content">
+                                        <h5>@i.TenSP</h5>
+                                        <span>@i.GiaBan.000 VNĐ</span>
+                                    </div>
+
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ***** Kids Area Ends ***** -->
+<!-- ***** Explore Area Starts ***** -->
+<section class="section" id="explore">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="left-content">
+                    <h2>Khám Phá Các Sản Phẩm</h2>
+                    <span>Đây là loại nước hoa tượng trưng cho sự tinh khiết. Mùi hương tươi mới. Đầu tiên là hương chanh dịu dàng thu hút khứu giác của bạn. Sau đó là hương thơm vô cùng quyến rũ khiến người ta không thể cưỡng lại, say đắm khó dứt. </span>
+                    <div class="quote">
+                        <i class="fa fa-quote-left"></i><p>Hương là một nụ hôn, thế thôi</p>
+                    </div>
+                    <div class="main-border-button">
+                        <ul class="nav">
+                            <li class="scroll-to-section">
+                                @Html.ActionLink("Xem Thêm", "Index", "Product")
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="right-content">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="leather">
+                                <h4>Túi Da</h4>
+                                <span>Bộ Sưu Tập Mới Nhất</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="first-image">
+                                <img src="~/images/explore-image-01.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="second-image">
+                                <img src="~/images/explore-image-02.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="types">
+                                <h4>Các loại khác nhau</h4>
+                                <span>Hơn 40 Loại Sản Phẩm</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="subscribe">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="section-heading">
+                    <h2>Bằng cách đăng ký nhận bản tin của chúng tôi, bạn có thể được giảm giá 10%</h2>
+                    <span>Chi tiết đến từng chi tiết là điều làm nên sự khác biệt của Hexashop</span>
+                </div>
+                <form id="subscribe" action="" method="get">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <fieldset>
+                                <input name="name" type="text" id="name" placeholder="Tên " required="">
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-5">
+                            <fieldset>
+                                <input name="email" type="text" id="email" placeholder="Địa Chỉ Email" required="">
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-2">
+                            <fieldset>
+                                <button type="submit" id="form-submit" class="main-dark-button"><i class="fa fa-paper-plane"></i></button>
+                            </fieldset>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-4">
+                <div class="row">
+                    <div class="col-6">
+                        <ul>
+                            <li>Địa Chỉ Cửa Hàng: <br><span>Bãi biển Sunny Isles, FL 33160, Hoa Kỳ</span></li>
+                            <li>Liên Hệ: <br><span>010-020-0340</span></li>
+                            <li>Văn Phòng Chính: <br><span>Bãi biển Bắc Miami</span></li>
+                        </ul>
+                    </div>
+                    <div class="col-6">
+                        <ul>
+                            <li>Thời Gian Làm Việc: <br><span>07:30 AM - 9:30 PM Daily</span></li>
+                            <li>Email:<br><span>info@company.com</span></li>
+                            <li>Truyền Thông Xã Hội: <br><span><a href="#">Facebook</a>, <a href="#">Instagram</a>, <a href="#">Behance</a>, <a href="#">Linkedin</a></span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ***** Explore Area Ends ***** -->
+<!-- ***** Subscribe Area Starts ***** -->
+
+<!-- ***** Subscribe Area Ends ***** -->

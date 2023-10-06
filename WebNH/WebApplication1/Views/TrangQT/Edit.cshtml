@@ -1,0 +1,102 @@
+﻿<style>
+    input {
+        width: 100%
+    }
+
+    select {
+        width: 100%
+    }
+
+    a {
+        color: black
+    }
+</style>
+@model WebNuocHoa.Models.SanPham
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<head>
+    <script src="https://cdn.ckeditor.com/ckeditor5/31.1.0/classic/ckeditor.js"></script>
+</head>
+<h2 style="background-color: lightpink;margin-top:120px; text-align:center">CHỈNH SỬA THÔNG TIN NƯỚC HOA</h2>
+<div style="margin-top:60px">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.MaSP)
+
+        <div class="form-group">
+            <lable class="col-md-4" style="margin-left:200px;margin-right:95px">Mã Sản Phẩm : </lable>@Model.MaSP
+        </div>
+
+        <div class="form-group">
+            <lable class="col-md-4" style="margin-left:200px; margin-right:85px">Tên Sản Phẩm :</lable> @Html.EditorFor(model => model.TenSP, new { htmlAttributes = new { @class = "col-md-6" } }) @Html.ValidationMessageFor(model => model.TenSP, "", new { @class = "col-md-6" })
+        </div>
+
+        <div class="form-group">
+            <lable class="col-md-4" style="margin-left:200px;margin-right:169px">Giá :</lable> @Html.EditorFor(model => model.GiaBan, new { htmlAttributes = new { @class = "col-md-6" } }) @Html.ValidationMessageFor(model => model.GiaBan, "", new { @class = "col-md-6" })
+        </div>
+
+        <div class="form-group">
+            <lable class="col-md-4" style="margin-left:200px;margin-right:151px">Mô Tả :</lable>
+            <div style="width: 50%; margin-left: 438px; margin-top: -12px;">
+                @*@Html.EditorFor(model => model.MoTa, new { htmlAttributes = new { @class = "col-md-6" } }) @Html.ValidationMessageFor(model => model.MoTa, "", new { @class = "col-md-6" })*@
+                <textarea id="editor">@Model.MoTa</textarea>
+                <script>
+                    ClassicEditor
+                        .create(document.querySelector('#editor'))
+                        .catch(erro => {
+                            console.error(erro);
+                        });
+                </script>
+            </div>
+        </div>
+        <div class="form-group">
+            <span class="col-md-4" style="margin-left:200px;margin-right:90px">Chọn Ảnh Mới :</span><input type="file" name="fileupload" />
+            <img style="width: 135px;" src="@Url.Content("~/images/" + Model.AnhBia)">
+            (Ảnh Hiện Tại)
+            @ViewBag.Thongbao
+        </div>
+
+        <div class="form-group">
+            <lable class="col-md-4" style="margin-left:200px;margin-right:111px">Mùi Hương : </lable>@Html.EditorFor(model => model.MuiHuong, new { htmlAttributes = new { @class = "col-md-6" } })@Html.ValidationMessageFor(model => model.MuiHuong, "", new { @class = "col-md-6" })
+        </div>
+
+        <div class="form-group">
+            <lable class="col-md-4" style="margin-left:200px;margin-right:127px">Đánh Giá :</lable>@Html.EditorFor(model => model.DanhGia, new { htmlAttributes = new { @class = "col-md-6" } }) @Html.ValidationMessageFor(model => model.DanhGia, "", new { @class = "col-md-6" })
+        </div>
+
+        <div class="form-group">
+            <span class="col-md-4" style="margin-left:200px;margin-right:83px">Ngày Cập Nhật :</span><input type="date" name="Ngaycapnhat" />  @Html.ValidationMessageFor(model => model.NgayCapNhat, "", new { @class = "col-md-6" })
+        </div>
+
+        <div class="form-group">
+            <lable class="col-md-4" style="margin-left:200px;margin-right:95px">Số Lượng Tồn : </lable>@Html.EditorFor(model => model.SoLuongTon, new { htmlAttributes = new { @class = "" } })@Html.ValidationMessageFor(model => model.SoLuongTon, "", new { @class = "" })
+        </div>
+
+        <div class="form-group">
+            <lable class="col-md-4" style="margin-left:200px;margin-right:59px">Mã Loại Sản Phẩm : </lable>@Html.EditorFor(model => model.MaLoai, new { htmlAttributes = new { @class = "" } })
+        </div>
+
+        <div class="form-group">
+            <lable class="col-md-4" style="margin-left:200px;margin-right:58px">Tên Loại Sản Phẩm :</lable>@Html.DropDownList("MaLoai")
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input style="background-color: lavender; border: outset;width: 100px;float: right;margin-right:-35px; border-radius: 5px;" type="submit" value="Lưu" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+    }
+</div>
+
+<div>
+    <p style="background-color: lavender; border: outset; border-radius: 5px; width: 118px; text-align: center; margin-top: 70px; height: 40px; margin-left: 55px; font-size: 16px; padding: 4px 0px 0px 0px;"> @Html.ActionLink("Trở Về", "SanPham")</p>
+</div>

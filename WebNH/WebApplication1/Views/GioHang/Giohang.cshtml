@@ -1,0 +1,58 @@
+﻿<style>
+    a{
+        color:black;
+    }
+     table {
+        border: 2px outset grey;
+        padding: 3px
+    }
+    td {
+        border: 1px solid;
+        margin: 1px;
+    }
+</style>
+@{
+    ViewBag.Title = "Giohang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="margin: 150px 0 40px 0px; text-align: center; background-color: lightpink;">THÔNG TIN GIỎ HÀNG</h2>
+<table border="1" align="center" style="width: 1000px;text-align: center;">
+    <tr>
+        <td>Mã Sản Phẩm</td>
+        <td>Tên Sản Phẩm</td>
+        <td>Bìa Sản Phẩm</td>
+        <td>Số Lượng</td>
+        <td>Đơn Giá</td>
+        <td>Thành Tiền</td>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.iMaSP </td>
+            <td>@item.sTenSP</td>
+            <td><img style="width: 135px;margin: 7px 0px 9px 0px;" src="~/images/@item.sAnhBia" /></td>
+            @using (Html.BeginForm("CapnhatGiohang", "Giohang", new { @iMaSP = item.iMaSP }))
+            {
+                <td><input style="width: 50px;border: outset" type="number" min="1" name="txtSoluong" value="@item.iSoluong" /></td>
+                <td>@String.Format("{0:0,0}", item.dDonggia),000</td>
+                <td>@String.Format("{0:0,0}", item.dThanhtoan),000</td>
+                <td><a style="color:black" href="@Url.Action("Index", "SingleProDuct", new { id = item.iMaSP })">Chi Tiết</a></td>
+                <td style="width:50px;">@Html.ActionLink("Xóa", "XoaGiohang", new { @iMaSP = item.iMaSP })</td>
+                <td><input style="border: outset;color: black;" type="submit" value="Cập Nhật" /></td>
+            }
+        </tr>
+    }
+    <tr style="color:red">
+        <td colspan="4" style="padding: 10px 0px 10px 0px; border-color:black">Số lượng sản phẩm: @ViewBag.Tongsoluong</td>
+        <td colspan="5" style="padding: 10px 0px 10px 0px;border-color:black">Tổng tiền: @String.Format("{0:0,0}", @ViewBag.TongTien),000 VNĐ</td>
+    </tr>  
+    <tr style="background-color: bisque;">
+        <td colspan="9" style="padding: 10px 0px 10px 0px;">
+            <p style="margin-left: 420px;width: 100px;font-size: 20px">@Html.ActionLink("Đặt Hàng", "Dathang", "Giohang")</p>
+        </td>
+    </tr>
+</table>
+
+

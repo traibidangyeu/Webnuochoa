@@ -1,0 +1,79 @@
+﻿<style>
+    lable {
+        font-weight: bold;
+    }
+    .form-group {
+        margin-bottom: 2rem;
+    }
+    a{
+        color:black
+    }
+</style>
+@model WebNuocHoa.Models.SanPham
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+    dt {
+        font-family: inherit;
+        font-size: 20px;
+    }
+</style>
+<div style="font-family: inherit;" class="container">
+    <h3 style="margin-top:150px">Bạn có muốn xóa sản phẩm này không?</h3>
+</div>
+<div class="container">
+    <hr />
+
+    <div class="form-group">
+        <lable class="col-md-6" style="margin-left:120px; margin-right:15px">Tên Sản Phẩm :</lable> @Model.TenSP
+    </div>
+
+    <div class="form-group">
+        <lable class="col-md-4" style="margin-left:120px; margin-right:100px">Giá :</lable> @Model.GiaBan
+    </div>
+
+    <div class="form-group">
+        <lable class="col-md-4" style="margin-left:120px; margin-right:80px">Mô Tả :</lable> @Model.MoTa
+
+    </div>
+
+    <div class="form-group">
+        <lable class="col-md-4" style="margin-left:120px; margin-right:65px">Ảnh :</lable>
+        <img style="width: 135px;" src="@Url.Content("~/images/" + Model.AnhBia)">
+    </div>
+
+    <div class="form-group">
+        <lable class="col-md-4" style="margin-left:120px; margin-right:42px">Mùi Hương :</lable>@Model.MuiHuong
+    </div>
+
+    <div class="form-group">
+        <lable class="col-md-4" style="margin-left:120px; margin-right:54px">Đánh Giá :</lable>@Model.DanhGia
+    </div>
+
+    <div class="form-group">
+        <lable class="col-md-4" style="margin-left:120px; margin-right:9px">Ngày Cập Nhật :</lable>
+        @String.Format("{0:dd/MM/yyyy}", Model.NgayCapNhat)
+    </div>
+
+
+
+    <div class="form-group">
+        <lable class="col-md-4" style="margin-left:120px; margin-right:24px">Số Lượng Tồn :</lable> @Model.SoLuongTon
+    </div>
+
+    <div class="form-group">
+        <lable class="col-md-4" style="margin-left:120px; margin-right:64px">Tên Loại :</lable> @Model.LoaiSPham.TenLoai
+    </div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input style="background-color: khaki; border: outset; border-radius: 5px; width: 118px; text-align: center;  height: 40px;  font-size: 16px; padding: 4px 0px 0px 0px;margin-left: 490px;" type="submit" value="XÓA" class="btn btn-default" />
+        </div>
+        <button style="background-color: lavender; border: outset; border-radius: 5px; width: 118px; text-align: center;  height: 40px;  font-size: 16px; padding: 4px 0px 0px 0px;">@Html.ActionLink("Trở Về ", "SanPham")</button>
+    }
+</div>
